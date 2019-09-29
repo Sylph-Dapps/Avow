@@ -1,0 +1,298 @@
+$theme-color: rgb(8, 79, 103);
+$border-color: $theme-color;
+$form-background-color: white;
+$form-text-color: black;
+$shadow-color: rgba(0,0,0,.5);
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    top: 10px;
+  }
+  to {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media (min-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  a {
+    color: $theme-color;
+  }
+  textarea, button, input, pre {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1em;
+    box-sizing: border-box; 
+  }
+  input, textarea {
+    padding: 5px;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 2em;
+  }
+  pre {
+    white-space: pre-wrap;
+    margin: 0px;
+  }
+}
+
+.App {
+  margin: 0px auto;
+  width: 100%;
+  color: $form-text-color;
+
+  header {
+    color: white;
+    text-align: center;
+    margin-bottom: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3em;
+      color: $form-background-color;
+      text-shadow: 3px 3px $shadow-color;
+    }
+    h2 {
+      font-size: 1.25em;
+      text-shadow: 3px 3px $shadow-color;
+    }
+    p {
+      text-shadow: 0 0 3px $shadow-color;
+    }
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+
+    .tab-navigator {
+      box-shadow: 5px 5px $shadow-color;
+
+      .tabs {
+        display: flex;
+      
+        button {
+          position: relative;
+          padding: 10px;
+          flex-grow: 1;
+          cursor: pointer;
+          outline: none;
+  
+          &:not(.selected) {
+            background: lightgrey;
+            color: black;
+            border-top: 1px solid gray;
+            border-left: 1px solid gray;
+            border-bottom: 1px solid $border-color;
+            border-right: 1px solid gray;
+            z-index: 1;
+          }
+          &.selected {
+            background: $form-background-color;
+            color: $theme-color;
+            font-weight: bold;
+            border-top: 1px solid $border-color;
+            border-left: 1px solid $border-color;
+            border-bottom: none;
+            border-right: 1px solid $border-color;
+            z-index: 2;
+          }
+          &:not(:last-child) {
+            margin-right: -1px;
+          }
+        }
+      }
+
+      .tab-content {
+        background: $form-background-color;
+        border-top: none;
+        border-left: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        padding: 20px;
+        box-shadow: 20px;
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: 1px solid $theme-color;
+    border-radius: 0;
+    background: $theme-color;
+    color: white;
+    padding: 10px;
+    outline: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .link {
+    cursor: pointer;
+    color: $theme-color;
+    text-decoration: underline;
+  }
+
+  .form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.83em;
+
+    h2 {
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      color: $theme-color;
+      display: inline-block;
+      flex-grow: 1;
+    }
+  }
+
+  .form-row {
+    // 1em between fomr items
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    // .25em between children of form items
+    :not(:last-child) {
+      margin-bottom: .25em;
+    }
+
+    button {
+      width: 100%;
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+
+    input {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 5em;
+    }
+  }
+
+  .Signer {
+    .label.signed {
+      font-weight: bold;
+    }
+  }
+
+  .Verifier {
+    input, textarea {
+      &.error {
+        border: 1px solid red;
+      }
+    }
+
+    .result-message {
+      text-align: center;
+      animation: fadein 1s;
+    }
+    .valid-result-message {
+      color: green;
+    }
+    .invalid-result-message {
+      color: red;
+    }
+  }
+
+  .HelpInfo {
+
+    &.modal-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(8, 79, 103, .25);
+      z-index: 100;
+      overflow: auto;
+      padding: 40px 60px;
+    }
+
+    .window {
+      background: $form-background-color;
+      border: 1px solid $theme-color;
+      box-shadow: 5px 5px $shadow-color;
+      max-width: 600px;
+      position: relative;
+      margin: 0px auto;
+      animation: appear 0.5s;
+
+      .window-header {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .close-button {
+          cursor: pointer;
+          user-select: none;
+          font-weight: bold;
+          padding: 10px;
+          display: inline-block;
+        }
+      }
+
+      .window-content {
+        padding: 30px;
+      }
+    }
+
+    .q {
+      font-weight: bold;
+    }
+  }
+}
