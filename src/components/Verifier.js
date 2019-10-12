@@ -8,7 +8,7 @@ import {
 } from 'ethereumjs-util';
 
 /**
- * Returns true the signature is valid for the provided message + address.
+ * Returns true if the signature is valid for the provided message + address.
  * @param {String} address - "0x" prefixed address
  * @param {String} message - The raw (i.e. not hashed) message that was signed
  * @param {String} signature - The signature

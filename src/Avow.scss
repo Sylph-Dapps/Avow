@@ -79,7 +79,7 @@ html {
   }
 }
 
-.App {
+.Avow {
   margin: 0px auto;
   width: 100%;
   color: $form-text-color;
@@ -104,6 +104,9 @@ html {
     }
     p {
       text-shadow: 0 0 3px $shadow-color;
+    }
+    a {
+      color: white;
     }
   }
 

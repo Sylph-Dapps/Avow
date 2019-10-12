@@ -16,6 +16,14 @@ class Signer extends React.Component {
   connectWeb3 = async () => {
     try {
       const web3 = await getWeb3();
+      if(window.ethereum && window.ethereum.on) {
+        window.ethereum.on('accountsChanged', accounts => {
+          this.setState({
+            address: accounts[0]
+          });
+        });
+      }
+      
       const accounts = await web3.eth.getAccounts();
       this.setState({
         web3,

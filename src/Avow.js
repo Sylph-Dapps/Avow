@@ -3,14 +3,14 @@ import Signer from "./components/Signer";
 import Verifier from "./components/Verifier";
 import HelpInfo from "./components/HelpInfo";
 
-import "./App.scss";
+import "./Avow.scss";
 
 const Modes = {
   SIGN: "sign",
   VERIFY: "verify",
 };
 
-class App extends React.Component {
+class Avow extends React.Component {
 
   constructor() {
     super();
@@ -49,11 +49,11 @@ class App extends React.Component {
     };
 
     return (
-      <div className="App">
+      <div className="Avow">
         <header>
           <h1>A V O W</h1>
-          <h2>An Ethereum Message Signer and Verifier</h2>
-          <p>By Michael VanDaniker</p>
+          <h2>An Ethereum Message Signer and Signature Verifier</h2>
+          <p>By <a href="https://michaelvandaniker.com">Michael VanDaniker</a></p>
         </header>
         <div className="container">
           <div className="tab-navigator">
@@ -83,4 +83,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Avow;
