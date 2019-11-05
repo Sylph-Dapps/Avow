@@ -29,6 +29,16 @@ const verify = (address, message, signature) => {
    return recoveredAddress.toUpperCase() === address.toUpperCase();
 }
 
+const getParameterByName = (name, url, defaultValue) => {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return defaultValue;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 const Results = {
   NOT_RUN: "notRun",
   VALID: "valid",
@@ -40,12 +50,18 @@ class Verifier extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
-      message: "",
-      signature: "",
+      address: getParameterByName("address", ""),
+      message: getParameterByName("message", ""),
+      signature: getParameterByName("signature", ""),
       showValidationErrors: false,
       result: Results.NOT_RUN,
     };
+  }
+
+  componentDidMount() {
+    if(this.state.address && this.state.message && this.state.signature) {
+      this.handleSubmit();
+    }
   }
 
   handleAddressChange = event => {

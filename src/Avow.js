@@ -1,21 +1,44 @@
 import React from "react";
+import {
+  Redirect,
+  NavLink,
+  withRouter,
+} from "react-router-dom";
 import Signer from "./components/Signer";
 import Verifier from "./components/Verifier";
 import HelpInfo from "./components/HelpInfo";
 
 import "./Avow.scss";
 
-const Modes = {
-  SIGN: "sign",
-  VERIFY: "verify",
-};
+// Dynamically determine what pathname represents the route of the app by checking if we are at "/sign" or "/verify" and using
+// everything in the pathname that appears before it as the new pathname. This obviates the need to have different configurations
+// for dev (where the app is served from the route URL) or production (where it could be hosted anywhere).
+let pathname = window.location.pathname;
+let needToRedirect = true;
+const routeList = ["/sign", "/verify"];
+for(var a = 0; a < routeList.length; a++) {
+  const route = routeList[a];
+  if(pathname.endsWith(route)) {
+    pathname = pathname.slice(0, pathname.lastIndexOf(route));
+    needToRedirect = false; // If the user is on "/sign" or "/verify" we do not redirect to "/sign".
+    break;
+  }
+}
+// We're goign to add the slash before "sign" and "verify" where we define our Routes, so if the pathname ends with a slash we can remove it.
+if(pathname.endsWith("/")) {
+  pathname = pathname.slice(0, pathname.lastIndexOf("/"));
+}
+const Routes = {
+  SIGN: pathname + "/sign",
+  VERIFY: pathname + "/verify",
+}
 
 class Avow extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      mode: Modes.SIGN,
+      helpInfoVisible: false
     };
   }
 
@@ -38,14 +61,17 @@ class Avow extends React.Component {
   
   render() {
     const {
-      mode,
-    } = this.state;
+      location,
+    } = this.props;
 
+    // We store Signer and Verfier's form field values in those components' state. To avoid having the form fields
+    // become empty when we switch from one to the other and back again, we keep both components mounted at all times
+    // and toggle their visiblity. Using <Switch> and <Route/> would unmount them.
     const signerStyle = {
-      display: mode === Modes.SIGN ? "block" : "none"
+      display: location.pathname === Routes.SIGN ? "block" : "none"
     };
     const verifierStyle = {
-      display: mode === Modes.VERIFY ? "block" : "none"
+      display: location.pathname === Routes.VERIFY ? "block" : "none"
     };
 
     return (
@@ -56,21 +82,16 @@ class Avow extends React.Component {
           <p>By <a href="https://michaelvandaniker.com">Michael VanDaniker</a></p>
         </header>
         <div className="container">
+          { needToRedirect && <Redirect exact from="/" to={Routes.SIGN}/> }
           <div className="tab-navigator">
             <div className="tabs">
-              <button className={mode === Modes.SIGN ? "selected" : ""}
-                onClick={() => {
-                  this.setState({ mode: Modes.SIGN })
-                }}>Sign a message</button>
-              <button className={mode === Modes.VERIFY ? "selected" : ""}
-                onClick={() => {
-                  this.setState({ mode: Modes.VERIFY })
-                }}>Verify a message signature</button>
+              <NavLink to={Routes.SIGN} activeClassName="selected">Sign a message</NavLink>
+              <NavLink to={Routes.VERIFY} activeClassName="selected">Verify a message signature</NavLink>
             </div>
             <div className="tab-content">
               <Signer style={signerStyle}
                 onHelpButtonClick={this.handleHelpButtonClick} />
-              <Verifier style={verifierStyle} 
+              <Verifier style={verifierStyle}
                 onHelpButtonClick={this.handleHelpButtonClick} />
             </div>
           </div>
@@ -83,4 +104,4 @@ class Avow extends React.Component {
   }
 }
 
-export default Avow;
+export default withRouter(Avow);

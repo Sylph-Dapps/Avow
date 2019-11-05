@@ -121,12 +121,14 @@ html {
       .tabs {
         display: flex;
       
-        button {
+        a {
+          text-align: center;
           position: relative;
           padding: 10px;
           flex-grow: 1;
           cursor: pointer;
           outline: none;
+          text-decoration: none;
   
           &:not(.selected) {
             background: lightgrey;
