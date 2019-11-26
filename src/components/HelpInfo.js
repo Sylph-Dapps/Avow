@@ -20,7 +20,7 @@ class HelpInfo extends React.Component {
           <div className="window-content">
             <div className="q">What is this?</div>
             <div>
-              <p>This is a tool that lets you sign a message using your Ethereum account and verify signed message from other accounts.</p>
+              <p>Avow lets you sign a message using your Ethereum account and verify signed message from other accounts.</p>
             </div>
 
             <div className="q">What does it mean to "sign a message"?</div>

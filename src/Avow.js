@@ -10,6 +10,13 @@ import HelpInfo from "./components/HelpInfo";
 
 import "./Avow.scss";
 
+// IE support for String.endsWith because Avow otherwise works in IE. Go figure.
+if (typeof String.prototype.endsWith !== 'function') {
+  String.prototype.endsWith = function(suffix) { // eslint-disable-line no-extend-native
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+  };
+}
+
 // Dynamically determine what pathname represents the route of the app by checking if we are at "/sign" or "/verify" and using
 // everything in the pathname that appears before it as the new pathname. This obviates the need to have different configurations
 // for dev (where the app is served from the route URL) or production (where it could be hosted anywhere).
@@ -85,8 +92,8 @@ class Avow extends React.Component {
           { needToRedirect && <Redirect exact from="/" to={Routes.SIGN}/> }
           <div className="tab-navigator">
             <div className="tabs">
-              <NavLink to={Routes.SIGN} activeClassName="selected">Sign a message</NavLink>
-              <NavLink to={Routes.VERIFY} activeClassName="selected">Verify a message signature</NavLink>
+              <NavLink to={Routes.SIGN} activeClassName="selected" replace={true}>Sign a message</NavLink>
+              <NavLink to={Routes.VERIFY} activeClassName="selected" replace={true}>Verify a message signature</NavLink>
             </div>
             <div className="tab-content">
               <Signer style={signerStyle}

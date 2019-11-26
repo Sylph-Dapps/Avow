@@ -85,9 +85,13 @@ class Signer extends React.Component {
             onClick={this.props.onHelpButtonClick}>Help</div>
         </div>
         <div>
-          In order to sign a message, you need to use a Ethereum-enabled browser, like <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
-          You can also use the <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noopener noreferrer">Metamask</a> extension in Chrome.
-          Mobile options include <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a>, <a href="https://wallet.coinbase.com/" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
+          <p>In order to sign a message, you need to use a Ethereum-enabled browser.</p>
+          <p>
+            On desktop you can use <a href="https://www.brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> or <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>. You can turn Chrome into an Ethereum-enabled browser by installing the <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noopener noreferrer">Metamask</a> plugin.
+          </p>
+          <p style={{marginBottom: '0px'}}>
+            Mobile options include <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a>, <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer">Metamask</a>, <a href="https://wallet.coinbase.com/" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
+          </p>
         </div>
       </div>
     );
@@ -125,13 +129,13 @@ class Signer extends React.Component {
         </div>
         { !web3 &&
           <div>
-            <p>Before you sign a message, you need to connect your wallet.</p>
+            <p>Before you sign a message, you need to connect Avow to your Ethereum-enabled browser.</p>
             <button onClick={this.connectWeb3}>Connect</button>
           </div>
         }
         { web3 &&
           <React.Fragment>
-            { loading && <div>Confirm the signature request in your wallet's user interface.</div>}
+            { loading && <div>Confirm the signature request in your browser's user interface.</div>}
             { !loading &&
               <React.Fragment>
                 <form onSubmit={this.handleSubmit}>
