@@ -20,7 +20,7 @@ class Signer extends React.Component {
         window.ethereum.on('accountsChanged', accounts => {
           this.setState({
             address: accounts[0]
-          });
+          }, this.resetForm);
         });
       }
       
@@ -28,7 +28,7 @@ class Signer extends React.Component {
       this.setState({
         web3,
         address: accounts[0],
-      });
+      }, this.resetForm);
     } catch (error) {
       alert("Failed to load web3 or accounts. Check console for details.");
     }
