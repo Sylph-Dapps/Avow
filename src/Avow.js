@@ -86,7 +86,7 @@ class Avow extends React.Component {
         <header>
           <h1>A V O W</h1>
           <h2>An Ethereum Message Signer and Signature Verifier</h2>
-          <p>By <a href="https://michaelvandaniker.com">Michael VanDaniker</a></p>
+          <p>By <a href="https://sylphdapps.com">Sylph Dapps</a></p>
         </header>
         <div className="container">
           { needToRedirect && <Redirect exact from="/" to={Routes.SIGN}/> }

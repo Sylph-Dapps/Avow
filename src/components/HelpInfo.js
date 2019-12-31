@@ -32,7 +32,7 @@ class HelpInfo extends React.Component {
             <div className="q">How are signed messages used?</div>
             <div>
               <p>Signed message can be used to prove account ownership. To do so, simply sign a message and share the signature. Anyone who doubts that you own the account can verify for themselves that your address and message produce the signature and that you must therefore be the account's owner.</p>
-              <p>Some dApps will have you sign messages to signal your intent to take certain actions. For example, if a dApp wants your permission to transfer a digital cat from your account at a certain time, it can ask you to sign a message to that effect. When the dApp takes that action on your behalf, it can be confident you authorized the action because, as the owner of the account, only you could produce a signed message with those particular instructions.</p>
+              <p>Some applications will have you sign a message to confirm that you agree to their terms and conditions or to authorize the application to take certain actions on your behalf.</p>
             </div>
           </div>
         </div>

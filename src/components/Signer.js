@@ -71,8 +71,10 @@ class Signer extends React.Component {
     this.setState({
       message: "",
       signature: undefined,
-    }, () =>{
-      this.messageInput.current.focus();
+    }, () => {
+      if(this.messageInput.current) {
+        this.messageInput.current.focus();
+      }
     });
   };
 
@@ -90,7 +92,7 @@ class Signer extends React.Component {
             On desktop you can use <a href="https://www.brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> or <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>. You can turn Chrome into an Ethereum-enabled browser by installing the <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noopener noreferrer">Metamask</a> plugin.
           </p>
           <p style={{marginBottom: '0px'}}>
-            Mobile options include <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a>, <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer">Metamask</a>, <a href="https://wallet.coinbase.com/" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
+            Mobile options include <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
           </p>
         </div>
       </div>
