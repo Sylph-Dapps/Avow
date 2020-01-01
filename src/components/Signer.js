@@ -89,10 +89,10 @@ class Signer extends React.Component {
         <div>
           <p>In order to sign a message, you need to use a Ethereum-enabled browser.</p>
           <p>
-            On desktop you can use <a href="https://www.brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> or <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>. You can turn Chrome into an Ethereum-enabled browser by installing the <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noopener noreferrer">Metamask</a> plugin.
+            You can turn Chrome and Firefox into Ethereum-enabled browsers by installing the <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer">Metamask</a> plugin, or you can use <a href="https://www.brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> or <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
           </p>
           <p style={{marginBottom: '0px'}}>
-            Mobile options include <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
+            On mobile you can use <a href="https://status.im/get/" target="_blank" rel="noopener noreferrer">Status</a> and the mobile version of <a href="https://www.opera.com/" target="_blank" rel="noopener noreferrer">Opera</a>.
           </p>
         </div>
       </div>
